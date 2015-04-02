@@ -1,0 +1,73 @@
+#ifndef HELIX_H
+#define HELIX_H
+
+#include <stdio.h>
+
+/* maximum string size */
+#define MAXSIZE 80
+/* maximum number of residues */
+#define MAXLEN 60
+/* salt concentraion */
+#define LOW 1
+/* salt concentraion */
+#define HIGH 2
+/* parameter changed flag */
+#define ON 3
+/* parameter unchanged flag */
+#define OFF 4
+#define YES ('y' == szLine[0] || 'Y' == szLine[0] || '\0' == szLine[0])
+
+#define MAX(x,y) ((x) > (y) ? (x) : (y))
+#define MIN(x,y) ((x) > (y) ? (y) : (x))
+
+#define PRINT_HEADER(szComment,nFirst,nLast) printf(szComment);\
+printf(" %s(%d) and %s(%d)\n",Seq[nFirst].szName,(nFirst)+1,\
+Seq[nLast].szName,(nLast)+1)
+
+struct residue {
+  char  szName[MAXSIZE];
+  float w1; 
+  float w; 
+  float vN; 
+  float vC; 
+  float N; 
+  float C;
+  char  cCharge;
+  float Pw1;
+  float Pw;
+  float PvN;
+  float PvC;
+  float fH;
+};
+
+struct sequence {
+  struct residue residue[MAXLEN];
+  int            nLength;
+  float          pH;
+  int            salt;
+  char           szDatFile[MAXSIZE];
+  char           szSeqFile[MAXSIZE];
+  char           szComment[MAXSIZE];
+};
+
+int ReadData  (struct sequence *Sequence);
+int ReadParam (struct sequence *Sequence);
+int ReadSeq   (struct sequence *Sequence);
+int SetCharge (struct sequence *Sequence);
+
+int FindYFW   (struct sequence *Sequence);
+int FindRH    (struct sequence *Sequence);
+int FindNcap  (struct sequence *Sequence);
+int FindCcap  (struct sequence *Sequence);
+int FindNend  (struct sequence *Sequence);
+int FindCend  (struct sequence *Sequence);
+int FindLipo  (struct sequence *Sequence);
+int FindHbond (struct sequence *Sequence);
+int FindCoul  (struct sequence *Sequence);
+
+int CalcProb (struct sequence *Sequence);
+
+void PrintParam (struct residue *Seq, int nFirst, int nLast, int *aFlag);
+void PrintProb (struct sequence *Sequence);
+
+#endif
