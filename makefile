@@ -1,8 +1,8 @@
-helix_s: helix.o readdata.o readseq.o readparam.o setcharge.o \
+helix_s: helix.o readdata.o readseq.o readcmdseq.o readparam.o setcharge.o \
 	findYFW.o printparam.o findRH.o findNcap.o findCcap.o \
 	findNend.o findCend.o findlipo.o findHbond.o findcoul.o \
         calcprob.o clearmatrix.o mtplymatrix.o printprob.o
-	gcc helix.o readdata.o readseq.o readparam.o setcharge.o \
+	gcc helix.o readdata.o readseq.o readcmdseq.o readparam.o setcharge.o \
 	findYFW.o printparam.o findRH.o findNcap.o findCcap.o \
 	findNend.o findCend.o findlipo.o findHbond.o findcoul.o \
 	calcprob.o clearmatrix.o mtplymatrix.o printprob.o -lm -o helix

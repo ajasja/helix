@@ -1,7 +1,7 @@
 #include "helix.h"
 #include <string.h>
 
-int FindLipo (struct sequence *Sequence)
+int FindLipo (struct sequence *Sequence, bool lipo_flag)
 {
 /******************************************************************
  * Description: this subroutine searches for lipophilic (dispersion) 
@@ -20,8 +20,13 @@ int FindLipo (struct sequence *Sequence)
   struct residue *Seq = Sequence->residue;
   int nLen = 0, nLength = Sequence->nLength;
 
-  printf("\nSearch for lipophilic effects? Y/N (def=Y): "); 
-  gets(szLine);
+  if(lipo_flag)
+    strcpy(szLine, "y");
+  else
+  {
+    printf("\nSearch for lipophilic effects? Y/N (def=Y): "); 
+    gets(szLine);
+  }
   if (YES)
   {
     for (nIndx = 1; nIndx < nLength; ++nIndx)

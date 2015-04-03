@@ -2,6 +2,7 @@
 #define HELIX_H
 
 #include <stdio.h>
+#include <stdbool.h>
 
 /* maximum string size */
 #define MAXSIZE 80
@@ -50,20 +51,21 @@ struct sequence {
   char           szComment[MAXSIZE];
 };
 
-int ReadData  (struct sequence *Sequence);
+int ReadData  (struct sequence *Sequence, char* cmdseq, bool seq_flag, char* salt, float pH);
 int ReadParam (struct sequence *Sequence);
 int ReadSeq   (struct sequence *Sequence);
+int ReadCmdSeq(struct sequence *Sequence, char* cmdseq);
 int SetCharge (struct sequence *Sequence);
 
-int FindYFW   (struct sequence *Sequence);
-int FindRH    (struct sequence *Sequence);
-int FindNcap  (struct sequence *Sequence);
-int FindCcap  (struct sequence *Sequence);
-int FindNend  (struct sequence *Sequence);
-int FindCend  (struct sequence *Sequence);
-int FindLipo  (struct sequence *Sequence);
-int FindHbond (struct sequence *Sequence);
-int FindCoul  (struct sequence *Sequence);
+int FindYFW   (struct sequence *Sequence, bool YFW_flag);
+int FindRH    (struct sequence *Sequence, bool RH_flag);
+int FindNcap  (struct sequence *Sequence, bool cap_flag);
+int FindCcap  (struct sequence *Sequence, bool cap_flag);
+int FindNend  (struct sequence *Sequence, bool end_flag);
+int FindCend  (struct sequence *Sequence, bool end_flag);
+int FindLipo  (struct sequence *Sequence, bool lipo_flag);
+int FindHbond (struct sequence *Sequence, bool Hbond_flag);
+int FindCoul  (struct sequence *Sequence, bool Coul_flag);
 
 int CalcProb (struct sequence *Sequence);
 
