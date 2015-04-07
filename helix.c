@@ -25,6 +25,7 @@ void main(int argc,char *argv[])
   char cmdseq[MAXSIZE];  //sequence to be read from the command line
   bool seq_flag=false;
   bool YFW_flag, RH_flag, cap_flag, end_flag, lipo_flag, Hbond_flag, Coul_flag, all_flag=false;
+  bool min_flag=false;
   char salt[MAXSIZE];  //string indicating salt concentration (H=hi / L=low)
   strcpy(salt,"L");  //default salt concentration is low
   float pH=7.0;  //pH at which to calculate charges
@@ -66,6 +67,13 @@ void main(int argc,char *argv[])
       all_flag=true;
     }
     
+    // print only minimal output
+    else if (strcmp(argv[i], "--min")==0)
+    {
+      puts("Writing minimal output only");
+      min_flag=true;
+    }
+    
     // print out help information
     else if (strcmp(argv[i], "-h") || strcmp(argv[i], "--help"))
     {
@@ -80,6 +88,7 @@ void main(int argc,char *argv[])
       puts("                  Note: <x> must be a number between 0.0 and 13.0\n");
       puts("--salt=[H|h]      uses high salt concentration in calculations (default = low salt)\n");
       puts("--findAll         use all available features in the model calculations (default asks about each feature at runtime)\n");
+      puts("--min             produces a minmal output file only (single column containing % helicity)\n");
       puts("--help, -h        print this help informantion\n");
       return;
     }
@@ -127,7 +136,10 @@ void main(int argc,char *argv[])
   CalcProb(&Sequence);
 
 /* print them out */
-  PrintProb(&Sequence);
+  if(min_flag)
+    PrintProbMin(&Sequence);
+  else
+    PrintProb(&Sequence);
   
   puts("Done!");
 }

@@ -71,5 +71,6 @@ int CalcProb (struct sequence *Sequence);
 
 void PrintParam (struct residue *Seq, int nFirst, int nLast, int *aFlag);
 void PrintProb (struct sequence *Sequence);
+void PrintProbMin (struct sequence *Sequence);
 
 #endif

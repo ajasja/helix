@@ -1,11 +1,11 @@
-helix_s: helix.o readdata.o readseq.o readcmdseq.o readparam.o setcharge.o \
+helix: helix.o readdata.o readseq.o readcmdseq.o readparam.o setcharge.o \
 	findYFW.o printparam.o findRH.o findNcap.o findCcap.o \
 	findNend.o findCend.o findlipo.o findHbond.o findcoul.o \
-        calcprob.o clearmatrix.o mtplymatrix.o printprob.o
+        calcprob.o clearmatrix.o mtplymatrix.o printprob.o printprob_min.o
 	gcc helix.o readdata.o readseq.o readcmdseq.o readparam.o setcharge.o \
 	findYFW.o printparam.o findRH.o findNcap.o findCcap.o \
 	findNend.o findCend.o findlipo.o findHbond.o findcoul.o \
-	calcprob.o clearmatrix.o mtplymatrix.o printprob.o -lm -o helix
+	calcprob.o clearmatrix.o mtplymatrix.o printprob.o printprob_min.o -lm -o helix
 
 helix.o: helix.c
 	gcc helix.c -c
@@ -47,3 +47,5 @@ mtplymatrix.o: mtplymatrix.c
 	gcc mtplymatrix.c -c
 printprob.o: printprob.c
 	gcc printprob.c -c
+printprob_min.o: printprob_min.c
+	gcc printprob_min.c -c
