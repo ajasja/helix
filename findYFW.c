@@ -1,7 +1,7 @@
 #include "helix.h"
 #include <string.h>
 
-int FindYFW(struct sequence *Sequence)
+int FindYFW(struct sequence *Sequence, bool YFW_flag)
 {
 /*************************************************************************
  * Description: this subroutine search for Tyr/Phe/Trp interactions
@@ -24,8 +24,13 @@ int FindYFW(struct sequence *Sequence)
   char szLine[MAXSIZE];
   struct residue* Seq = Sequence->residue;
 
-  printf("\nSearching for Tyr/Phe/Trp interactions? Y/N (def=Y): ");
-  gets(szLine);
+  if(YFW_flag)
+    strcpy(szLine, "y");
+  else
+  {
+    printf("\nSearching for Tyr/Phe/Trp interactions? Y/N (def=Y): ");
+    gets(szLine);
+  }
   if (YES)
   {
     for (nIndx = 0; nIndx < Sequence->nLength; ++nIndx)

@@ -1,7 +1,7 @@
 #include "helix.h" 
 #include <string.h>
 
-int FindCend (struct sequence *Sequence)
+int FindCend (struct sequence *Sequence, bool end_flag)
 {
 /********************************************************************
  * Description: this subroutine searches for end effects at C terminus
@@ -16,8 +16,13 @@ int FindCend (struct sequence *Sequence)
   struct residue *Seq = Sequence->residue;
   int nLength = Sequence->nLength;
 
-  printf("\nSearching for C-terminal end effects? Y/N (def=Y): "); 
-  gets(szLine); 
+  if (end_flag)
+    strcpy(szLine, "y");
+  else
+  {
+    printf("\nSearching for C-terminal end effects? Y/N (def=Y): "); 
+    gets(szLine);
+  }
   if (YES)
   {
     aFlag[nLength-5] = aFlag[nLength-4] = aFlag[nLength-3] = 
@@ -28,8 +33,13 @@ int FindCend (struct sequence *Sequence)
       if ('+' == Seq[nLength-5].cCharge)
       {
         PRINT_HEADER(szStr2, nLength-5, nLength-1);
-        printf("\n%s", szStr1);
-        gets(szLine);
+        if (end_flag)
+          strcpy(szLine, "y");
+        else
+        {
+          printf("\n%s", szStr1);
+          gets(szLine);
+        }
         if (YES)
         {
           Seq[nLength-5].vC *= 1.06;
@@ -40,8 +50,13 @@ int FindCend (struct sequence *Sequence)
       else if ('+' == Seq[nLength-4].cCharge)
       {
         PRINT_HEADER(szStr2, nLength-4, nLength-1);
-        printf("\n%s", szStr1);
-        gets(szLine);
+        if (end_flag)
+          strcpy(szLine, "y");
+        else
+        {
+          printf("\n%s", szStr1);
+          gets(szLine);
+        }
         if (YES)
         {
           Seq[nLength-4].vC *= 1.08; 
@@ -52,8 +67,13 @@ int FindCend (struct sequence *Sequence)
       else if('+' == Seq[nLength-3].cCharge)
       {
         PRINT_HEADER(szStr2, nLength-3, nLength-1);
-        printf("\n%s", szStr1);
-        gets(szLine);
+        if (end_flag)
+          strcpy(szLine, "y");
+        else
+        {
+          printf("\n%s", szStr1);
+          gets(szLine);
+        }
         if (YES)
         {
           Seq[nLength-3].vC *= 1.1; 
@@ -65,8 +85,13 @@ int FindCend (struct sequence *Sequence)
       else if ('+' == Seq[nLength-2].cCharge)
       {
         PRINT_HEADER(szStr2, nLength-2, nLength-1);
-        printf("\n%s", szStr1); 
-        gets(szLine);
+        if (end_flag)
+          strcpy(szLine, "y");
+        else
+        {
+          printf("\n%s", szStr1);
+          gets(szLine);
+        }
         if (YES)
         {
           Seq[nLength-2].vC *= 1.1;
@@ -85,8 +110,14 @@ int FindCend (struct sequence *Sequence)
       if (Seq[nLength-1].cCharge != '\0')
       {
         printf("%s%s(%d)\tand ", szStr2, Seq[nLength-1].szName, nLength);
-        printf("%s(%d)\n%s", "COO-", nLength, szStr1); 
-        gets(szLine);
+        printf("%s(%d)", "COO-", nLength);
+        if (end_flag)
+          strcpy(szLine, "y");
+        else
+        {
+          printf("\n%s", szStr1);
+          gets(szLine);
+        }
         if (YES)
         {
           if ('+' == Seq[nLength-1].cCharge) 
@@ -99,8 +130,14 @@ int FindCend (struct sequence *Sequence)
       else if (Seq[nLength-2].cCharge != '\0')
       {
         printf("%s%s(%d)\tand ", szStr2, Seq[nLength-2].szName, nLength - 1);
-        printf("%s(%d)\n%s", "COO-", nLength, szStr1); 
-        gets(szLine);
+        printf("%s(%d)", "COO-", nLength);
+        if (end_flag)
+          strcpy(szLine, "y");
+        else
+        {
+          printf("\n%s", szStr1);
+          gets(szLine);
+        }
         if (YES)   
         {
           if ('+' == Seq[nLength-2].cCharge) 
@@ -119,8 +156,14 @@ int FindCend (struct sequence *Sequence)
       else if (Seq[nLength-3].cCharge != '\0')
       {
         printf("%s%s(%d)\tand ", szStr2, Seq[nLength-3].szName, nLength - 2);
-        printf("%s(%d)\n%s", "COO-", nLength, szStr1);
-        gets(szLine);
+        printf("%s(%d)", "COO-", nLength);
+        if (end_flag)
+          strcpy(szLine, "y");
+        else
+        {
+          printf("\n%s", szStr1);
+          gets(szLine);
+        }
         if (YES)
         {
           if ('+' == Seq[nLength-3].cCharge)
@@ -139,8 +182,14 @@ int FindCend (struct sequence *Sequence)
       else if (Seq[nLength-4].cCharge != '\0')
       {
         printf("%s%s(%d)\tand ", szStr2, Seq[nLength-4].szName, nLength - 3);
-        printf("%s(%d)\n%s", "COO-", nLength, szStr1); 
-        gets(szLine);
+        printf("%s(%d)", "COO-", nLength);
+        if (end_flag)
+          strcpy(szLine, "y");
+        else
+        {
+          printf("\n%s", szStr1);
+          gets(szLine);
+        }
         if (YES)
         {
           if ('+' == Seq[nLength-4].cCharge) 
@@ -153,8 +202,14 @@ int FindCend (struct sequence *Sequence)
       else if (Seq[nLength-5].cCharge != 0)
       {
         printf("%s%s(%d)\tand ", szStr2, Seq[nLength-5].szName, nLength - 4);
-        printf("%s(%d)\n%s", "COO-", nLength, szStr1);
-        gets(szLine);
+        printf("%s(%d)", "COO-", nLength);
+        if (end_flag)
+          strcpy(szLine, "y");
+        else
+        {
+          printf("\n%s", szStr1);
+          gets(szLine);
+        }
         if (YES)
         {
           if ('+' == Seq[nLength-5].cCharge) 

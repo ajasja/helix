@@ -1,7 +1,7 @@
 #include "helix.h" 
 #include <string.h>
 
-int FindNcap (struct sequence *Sequence)
+int FindNcap (struct sequence *Sequence, bool cap_flag)
 {
 /************************************************************************
  * Description: this subroutine searches for N-capping boxes according to 
@@ -21,8 +21,14 @@ int FindNcap (struct sequence *Sequence)
   char szStr2[] = "Adjust parameters to reflect identified interaction? Y/N (def=Y): "; 
   struct residue *Seq=Sequence->residue;
 
-  printf("\nSearching for capping boxes? Y/N (def=Y): "); 
-  gets(szLine);
+  if (cap_flag)
+    strcpy(szLine,"y");
+  else
+  {
+    printf("\nSearching for capping boxes? Y/N (def=Y): "); 
+    gets(szLine);
+  }
+  
   if (YES)
   {
     for (nIndx = 0; nIndx < Sequence->nLength; ++nIndx)
@@ -37,8 +43,13 @@ int FindNcap (struct sequence *Sequence)
         /* S/T XX E-/D- */
         {
           PRINT_HEADER(szStr1, nIndx, nIndx + 3);
-          printf(szStr2);
-          gets(szLine);
+          if (cap_flag)
+            strcpy(szLine,"y");
+          else
+          {
+            printf(szStr2);
+            gets(szLine);
+          }
           if (YES)
           {
             Seq[nIndx-1].w1 *= 0.6;   
@@ -68,8 +79,13 @@ int FindNcap (struct sequence *Sequence)
         /* S/T XX Q */
         {
           PRINT_HEADER(szStr1, nIndx, nIndx + 3);
-          printf(szStr2); 
-          gets(szLine);
+          if (cap_flag)
+            strcpy(szLine,"y");
+          else
+          {
+            printf(szStr2);
+            gets(szLine);
+          }
           if (YES)
           {
             Seq[nIndx-1].w1 *= 0.7;   
@@ -100,8 +116,13 @@ int FindNcap (struct sequence *Sequence)
         /* N/D- XX E-/D- */
         {
           PRINT_HEADER(szStr1, nIndx, nIndx + 3);
-          printf(szStr2); 
-          gets(szLine);
+          if (cap_flag)
+            strcpy(szLine,"y");
+          else
+          {
+            printf(szStr2);
+            gets(szLine);
+          }
           if (YES)
           {
             Seq[nIndx-1].w1 *= 0.7;   
@@ -129,8 +150,13 @@ int FindNcap (struct sequence *Sequence)
         /* N/D- XX Q */
         {
           PRINT_HEADER(szStr1, nIndx, nIndx + 3);
-          printf(szStr2); 
-          gets(szLine);
+          if (cap_flag)
+            strcpy(szLine,"y");
+          else
+          {
+            printf(szStr2);
+            gets(szLine);
+          }
           if (YES)
           {
             Seq[nIndx-1].w1 *= 0.7; 
@@ -156,8 +182,13 @@ int FindNcap (struct sequence *Sequence)
         /* E- XX E-/D- */
         {
           PRINT_HEADER(szStr1, nIndx, nIndx + 3);
-          printf(szStr2); 
-          gets(szLine);
+          if (cap_flag)
+            strcpy(szLine,"y");
+          else
+          {
+            printf(szStr2);
+            gets(szLine);
+          }
           if (YES)
           {
             Seq[nIndx-1].w1 *= 0.7;  
@@ -184,8 +215,13 @@ int FindNcap (struct sequence *Sequence)
         /* E- XX Q */
         {
           PRINT_HEADER(szStr1, nIndx, nIndx + 3);
-          printf(szStr2); 
-          gets(szLine);
+          if (cap_flag)
+            strcpy(szLine,"y");
+          else
+          {
+            printf(szStr2);
+            gets(szLine);
+          }
           if (YES)
           {
             Seq[nIndx-1].w1 *= 0.7; 
@@ -213,8 +249,13 @@ int FindNcap (struct sequence *Sequence)
       /* G XX E-/D- */
       {
         PRINT_HEADER(szStr1, nIndx, nIndx + 3);
-        printf(szStr2); 
-        gets(szLine);
+        if (cap_flag)
+          strcpy(szLine,"y");
+        else
+        {
+          printf(szStr2);
+          gets(szLine);
+        }
         if (YES)
         {
           Seq[nIndx-1].w1 *= 0.7;
@@ -231,8 +272,13 @@ int FindNcap (struct sequence *Sequence)
       /* G XX Q */
       {
         PRINT_HEADER(szStr1, nIndx, nIndx + 3);
-        printf(szStr2); 
-        gets(szLine);
+        if (cap_flag)
+          strcpy(szLine,"y");
+        else
+        {
+          printf(szStr2);
+          gets(szLine);
+        }
         if (YES)
         {
           Seq[nIndx+2].w1 *= .5;

@@ -5,7 +5,7 @@
                                    Seq[nCharge1].szName, nCharge1 + 1,\
                                    Seq[nCharge2].szName, nCharge2 + 1))
 
-int FindCoul (struct sequence *Sequence)
+int FindCoul (struct sequence *Sequence, bool Coul_flag)
 {
 /********************************************************************
  * Description: this subroutine searches for Coulombic interactions 
@@ -37,8 +37,13 @@ int FindCoul (struct sequence *Sequence)
   char szLine[MAXSIZE];
   struct residue* Seq = Sequence->residue;
 
-  printf("\nSearch for coulombic interactions? Y/N (def=Y): "); 
-  gets(szLine);
+  if(Coul_flag)
+    strcpy(szLine, "y");
+  else
+  {
+    printf("\nSearch for coulombic interactions? Y/N (def=Y): "); 
+    gets(szLine);
+  }
   if (YES)
   {
     for (nIndx = 1; nIndx < nLength; ++nIndx) 

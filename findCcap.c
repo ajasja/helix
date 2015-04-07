@@ -1,7 +1,7 @@
 #include "helix.h"
 #include <string.h>
 
-int FindCcap (struct sequence *Sequence)
+int FindCcap (struct sequence *Sequence, bool cap_flag)
 {
 /****************************************************************
  * Description: this subroutine searches for C-caping boxes (Gly)
@@ -21,8 +21,13 @@ int FindCcap (struct sequence *Sequence)
     if ('G' == Seq[nIndx].szName[0])
     {
       printf("A C-cap is found at: %s(%d)\n", Seq[nIndx-1].szName, nIndx);
-      printf(szStr); 
-      gets(szLine);
+      if (cap_flag)
+        strcpy(szLine,"y");
+      else
+      {
+        printf(szStr);
+        gets(szLine);
+      }
       if (YES)
       {
         Seq[nIndx-1].C *= 1.09;

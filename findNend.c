@@ -2,7 +2,7 @@
 #include <string.h>
 #include <math.h>
 
-int FindNend (struct sequence *Sequence)
+int FindNend (struct sequence *Sequence, bool end_flag)
 {
 /********************************************************************
  * Description: this subroutine searches for end effects at N terminus
@@ -17,8 +17,13 @@ int FindNend (struct sequence *Sequence)
   char szStr2[] = "\nEnd effect is found between: ";
   struct residue *Seq = Sequence->residue;
 
-  printf("\nSearching for N-terminal end effects? Y/N (def=Y): "); 
-  gets(szLine);
+  if (end_flag)
+    strcpy(szLine, "y");
+  else
+  {
+    printf("\nSearching for N-terminal end effects? Y/N (def=Y): "); 
+    gets(szLine);
+  }
   if (YES)
   {
     for (nIndx = 0; nIndx < 5; ++nIndx)
@@ -27,8 +32,13 @@ int FindNend (struct sequence *Sequence)
     if( !strncmp(Seq[0].szName, "Suc", 3) && '-' == Seq[0].cCharge)
     {
       printf("%s%s(%d)\n", "End effect is found at ", Seq[0].szName, 1);
-      printf(szStr1); 
-      gets(szLine);
+      if (end_flag)
+        strcpy(szLine, "y");
+      else
+      {
+        printf(szStr1); 
+        gets(szLine);
+      }
       if (YES)
       {
         Seq[1].N  *= 1.22; 
@@ -45,8 +55,13 @@ int FindNend (struct sequence *Sequence)
                 Seq[0].szName, 1,
                 Seq[1].szName, 2,
                 Seq[2].szName, 3);
-        printf(szStr1); 
-        gets(szLine);
+        if (end_flag)
+          strcpy(szLine, "y");
+        else
+        {
+          printf(szStr1); 
+          gets(szLine);
+        }
         if (YES)
         {
           if (LOW == Sequence->salt) 
@@ -66,8 +81,13 @@ int FindNend (struct sequence *Sequence)
       else if ('+' == Seq[1].cCharge)
       {
         PRINT_HEADER(szStr2, 0, 1);
-        printf(szStr1); 
-        gets(szLine);
+        if (end_flag)
+          strcpy(szLine, "y");
+        else
+        {
+          printf(szStr1); 
+          gets(szLine);
+        }
         if (YES)
         {
           if (LOW == Sequence->salt)
@@ -89,8 +109,13 @@ int FindNend (struct sequence *Sequence)
       else if ('+' == Seq[2].cCharge)
       {
         PRINT_HEADER(szStr2, 0, 2);
-        printf(szStr1); 
-        gets(szLine);
+        if (end_flag)
+          strcpy(szLine, "y");
+        else
+        {
+          printf(szStr1); 
+          gets(szLine);
+        }
         if (YES)
         {
           if (LOW == Sequence->salt) 
@@ -110,8 +135,13 @@ int FindNend (struct sequence *Sequence)
       if ('+' == Seq[1].cCharge)
       {
         PRINT_HEADER(szStr2, 0, 1);
-        printf(szStr1); 
-        gets(szLine);
+        if (end_flag)
+          strcpy(szLine, "y");
+        else
+        {
+          printf(szStr1); 
+          gets(szLine);
+        }
         if (YES)
         {
           if (LOW == Sequence->salt) 
@@ -125,8 +155,13 @@ int FindNend (struct sequence *Sequence)
       if ('+' == Seq[2].cCharge)
       {
         PRINT_HEADER(szStr2, 0, 2);
-        printf(szStr1); 
-        gets(szLine);
+        if (end_flag)
+          strcpy(szLine, "y");
+        else
+        {
+          printf(szStr1); 
+          gets(szLine);
+        }
         if (YES)
         {
           if (LOW == Sequence->salt) 
@@ -146,8 +181,13 @@ int FindNend (struct sequence *Sequence)
       if ('+' == Seq[3].cCharge)
       {
         PRINT_HEADER(szStr2, 0, 3);
-        printf(szStr1); 
-        gets(szLine);
+        if (end_flag)
+          strcpy(szLine, "y");
+        else
+        {
+          printf(szStr1); 
+          gets(szLine);
+        }
         if (YES)
         {
           if (LOW == Sequence->salt) 
@@ -170,8 +210,13 @@ int FindNend (struct sequence *Sequence)
         if ('D' == Seq[nIndx].szName[0] && '-' == Seq[nIndx].cCharge)
         {
           PRINT_HEADER(szStr2, 0, nIndx);
-          printf(szStr1); 
-          gets(szLine);
+          if (end_flag)
+            strcpy(szLine, "y");
+          else
+          {
+            printf(szStr1); 
+            gets(szLine);
+          }
           if (YES)
           {
             if (LOW == Sequence->salt) 
@@ -187,8 +232,13 @@ int FindNend (struct sequence *Sequence)
         else if ('E' == Seq[nIndx].szName[0] && '-' == Seq[nIndx].cCharge)
         {
           PRINT_HEADER(szStr2, 0, nIndx);
-          printf(szStr1); 
-          gets(szLine);
+          if (end_flag)
+            strcpy(szLine, "y");
+          else
+          {
+            printf(szStr1); 
+            gets(szLine);
+          }
           if (YES)
           {
             if (LOW == Sequence->salt) 
@@ -212,8 +262,13 @@ int FindNend (struct sequence *Sequence)
           Seq[2].cCharge != '-')
       {
         printf(" NH3+(1) w/o D-/E- at 1->3 recognized, ");
-        printf("accept? Y/N (def=Y): "); 
-        gets(szLine);
+        if (end_flag)
+          strcpy(szLine, "y");
+        else
+        {
+          printf("accept? Y/N (def=Y): "); 
+          gets(szLine);
+        }
         if (YES)
         {
           Seq[2].w1 *= .96; 
@@ -227,8 +282,13 @@ int FindNend (struct sequence *Sequence)
       if ('+' == Seq[0].cCharge)
       {
         printf("%s%s\tand %s(%d)", szStr2, "NH3+(1)", Seq[0].szName, 1);
-        printf(szStr1); 
-        gets(szLine);
+        if (end_flag)
+          strcpy(szLine, "y");
+        else
+        {
+          printf(szStr1); 
+          gets(szLine);
+        }
         if (YES)
         {
           if (LOW == Sequence->salt==LOW) 
@@ -241,8 +301,13 @@ int FindNend (struct sequence *Sequence)
       if ('+' == Seq[1].cCharge)
       {
         printf("%s%s\tand %s(%d)", szStr2, "NH3+(1)", Seq[1].szName, 2);
-        printf(szStr1); 
-        gets(szLine);
+        if (end_flag)
+          strcpy(szLine, "y");
+        else
+        {
+          printf(szStr1); 
+          gets(szLine);
+        }
         if (YES)
         {
           if (LOW == Sequence->salt==LOW) 
@@ -262,8 +327,13 @@ int FindNend (struct sequence *Sequence)
       if ('+' == Seq[2].cCharge)
       {
         printf("%s%s\tand %s(%d)", szStr2, "NH3+(1)", Seq[2].szName, 3);
-        printf(szStr1); 
-        gets(szLine);
+        if (end_flag)
+          strcpy(szLine, "y");
+        else
+        {
+          printf(szStr1); 
+          gets(szLine);
+        }
         if (YES)
         {
           if (LOW == Sequence->salt) 
@@ -284,8 +354,13 @@ int FindNend (struct sequence *Sequence)
       if ('D' == Seq[0].szName[0] && '-' == Seq[0].cCharge)
       {
         printf("%s%s\tand %s(%d)", szStr2, "NH3+(1)", Seq[0].szName, 1);
-        printf(szStr1); 
-        gets(szLine);
+        if (end_flag)
+          strcpy(szLine, "y");
+        else
+        {
+          printf(szStr1); 
+          gets(szLine);
+        }
         if (YES)
         {
           Seq[0].N *= 1.1;
@@ -296,8 +371,13 @@ int FindNend (struct sequence *Sequence)
       if ('-' == Seq[1].cCharge)
       {
         printf("%s%s\tand %s(%d)", szStr2, "NH3+(1)", Seq[1].szName, 2);
-        printf(szStr1); 
-        gets(szLine);
+        if (end_flag)
+          strcpy(szLine, "y");
+        else
+        {
+          printf(szStr1); 
+          gets(szLine);
+        }
         if (YES)
         {
           if ('D' == Seq[1].szName[0] && '-' == Seq[1].cCharge)
@@ -318,8 +398,13 @@ int FindNend (struct sequence *Sequence)
       if ('-' == Seq[2].cCharge && nIndx < 2)
       {
         printf("%s%s\tand %s(%d)", szStr2, "NH3+(1)", Seq[2].szName, 3);
-        printf(szStr1);
-        gets(szLine);
+        if (end_flag)
+          strcpy(szLine, "y");
+        else
+        {
+          printf(szStr1); 
+          gets(szLine);
+        }
         if (YES)
         {
           if ('D' == Seq[2].szName[0] && '-' == Seq[2].cCharge)
@@ -341,8 +426,13 @@ int FindNend (struct sequence *Sequence)
       if ('-' == Seq[3].cCharge && nIndx < 2)
       {
         printf("%s%s\tand %s(%d)", szStr2, "NH3+(1)", Seq[3].szName, 4);
-        printf(szStr1); 
-        gets(szLine);
+        if (end_flag)
+          strcpy(szLine, "y");
+        else
+        {
+          printf(szStr1); 
+          gets(szLine);
+        }
         if (YES)
         {
           if ('D' == Seq[3].szName[0] && '-' == Seq[3].cCharge)

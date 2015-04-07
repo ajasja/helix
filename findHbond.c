@@ -1,7 +1,7 @@
 #include "helix.h"
 #include <string.h>
 
-int FindHbond (struct sequence *Sequence)
+int FindHbond (struct sequence *Sequence, bool Hbond_flag)
 {
 /*******************************************************************
  * Description: this subroutine searches for hydrogen-bonding effect
@@ -21,8 +21,13 @@ int FindHbond (struct sequence *Sequence)
   struct residue *Seq = Sequence->residue;
   int nLength = Sequence->nLength;
 
-  printf("\nSearch for hydrogen-bonding effects? Y/N (def=Y): "); 
-  gets(szLine);
+  if(Hbond_flag)
+    strcpy(szLine, "y");
+  else
+  {
+    printf("\nSearch for hydrogen-bonding effects? Y/N (def=Y): "); 
+    gets(szLine);
+  }
   if (YES)
   {
     for (nIndx = 1; nIndx < nLength; ++nIndx)

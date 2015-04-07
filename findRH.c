@@ -1,7 +1,7 @@
 #include "helix.h"
 #include <string.h>
 
-int FindRH (struct sequence *Sequence)
+int FindRH (struct sequence *Sequence, bool RH_flag)
 {
 /************************************************************************
  * Description: this subroutine searches for R+ and H+ at C-terminus from 
@@ -15,8 +15,13 @@ int FindRH (struct sequence *Sequence)
   struct residue *Seq = Sequence->residue;
   int nLength = Sequence->nLength;
 
-  printf("\nSearching for Arg & His at C-terminus? Y/N (def=Y): ");
-  gets(szLine);
+  if(RH_flag)
+    strcpy(szLine,"y");
+  else
+  {
+    printf("\nSearching for Arg & His at C-terminus? Y/N (def=Y): ");
+    gets(szLine);
+  }
 
   if (YES)
   {
