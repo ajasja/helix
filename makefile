@@ -13,6 +13,8 @@ readdata.o: readdata.c
 	gcc readdata.c -c
 readseq.o: readseq.c
 	gcc readseq.c -c
+readcmdseq.o: readcmdseq.c
+	gcc readcmdseq.c -c	
 readparam.o: readparam.c
 	gcc readparam.c -c
 setcharge.o: setcharge.c
