@@ -49,3 +49,5 @@ printprob.o: printprob.c
 	gcc printprob.c -c
 printprob_min.o: printprob_min.c
 	gcc printprob_min.c -c
+clean:
+	rm -f *.o helix.exe helix
