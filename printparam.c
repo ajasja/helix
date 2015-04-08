@@ -9,12 +9,12 @@ void PrintParam (struct residue *Seq, int nFirst, int nLast, int *aFlag)
 
   int nIndx = 0;
 
-  printf("The parameters after adjustments are:\n");
-  printf("\t   w'\t     w\t       vN\t vC\t   N\t     C\n");
+  dprint("The parameters after adjustments are:\n");
+  dprint("\t   w'\t     w\t       vN\t vC\t   N\t     C\n");
   for (nIndx = nFirst; nIndx <= nLast; ++nIndx)
   {
     if (ON == aFlag[nIndx])
-      printf("%2d %s\t%f  %f  %f  %f  %f  %f\n", 
+      dprint("%2d %s\t%f  %f  %f  %f  %f  %f\n", 
              nIndx+1, 
              Seq[nIndx].szName,
              Seq[nIndx].w1,

@@ -279,8 +279,8 @@ int FindCoul (struct sequence *Sequence, bool Coul_flag)
         if (ON == aFlag7[nIndx])
           PRINT(nIndx, nIndx + 8);
       }
-      printf("The parameters after adjustment are:\n");
-      printf("\t   w'\t     w\t       vN\t vC\t   N\t     C\n");
+      dprint("The parameters after adjustment are:\n");
+      dprint("\t   w'\t     w\t       vN\t vC\t   N\t     C\n");
       for (nIndx = 1; nIndx <= nLen; ++nIndx)
       {
         g_w[nIndx]  = MIN(g_w[nIndx], 1.35);  
@@ -289,7 +289,7 @@ int FindCoul (struct sequence *Sequence, bool Coul_flag)
         {
           Seq[nIndx].w1 *= g_w1[nIndx]; 
           Seq[nIndx].w  *= g_w[nIndx];
-          printf("%2d %s\t%f  %f  %f  %f  %f  %f\n",
+          dprint("%2d %s\t%f  %f  %f  %f  %f  %f\n",
                  nIndx + 1, 
                  Seq[nIndx].szName,
                  Seq[nIndx].w1, 

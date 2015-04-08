@@ -33,10 +33,11 @@ void main(int argc,char *argv[])
   strcpy(out, "helix.out");
 
   /* read command-line arguments */
-  printf("No. of command line parameters: %d\n", argc-1);
+  printf("\n****************** Helix v1.6 *******************\n");
+  dprint("No. of command line parameters: %d\n", argc-1);
   for (i=1; i<argc; i++)
   {
-    printf("argument %d: %s\n", i, argv[i]);
+    dprint("argument %d: %s\n", i, argv[i]);
     
     // read sequence
     if (strstr(argv[i], "--seq="))
@@ -68,14 +69,14 @@ void main(int argc,char *argv[])
     // silently include all features in the model
     else if (strcmp(argv[i], "--findAll")==0)
     {
-      puts("Looking up all features");
+      printf("Looking up all features\n");
       all_flag=true;
     }
     
     // print only minimal output
     else if (strcmp(argv[i], "--min")==0)
     {
-      puts("Writing minimal output only");
+      printf("Writing minimal output only\n");
       min_flag=true;
     }
     
@@ -110,7 +111,7 @@ void main(int argc,char *argv[])
   if (all_flag)  //set all individual flags to true
     YFW_flag=RH_flag=cap_flag=end_flag=lipo_flag=Hbond_flag=Coul_flag= true;
   
-  puts("----------------");
+  printf("----------------\n");
   
 /* input data from sequence and parameter files */
   if (!ReadData(&Sequence, cmdseq, seq_flag, salt, pH))
@@ -154,5 +155,5 @@ void main(int argc,char *argv[])
   else
     PrintProb(&Sequence, out);
   
-  puts("Done!");
+  dprint("Done!\n");
 }

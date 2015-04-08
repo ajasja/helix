@@ -29,8 +29,8 @@ void PrintProbMin(struct sequence *Sequence, char* out)
   else
   {
     PRINT("%s\n", "High Salt Condition"); 
-  }
-  PRINT("\n\t%s", "P(w')  P(w)   P(vN)  P(vC) P(w'+w)  fH");*/ 
+  }*/
+  printf("\n\t%s", "P(w')  P(w)   P(vN)  P(vC) P(w'+w)  fH");
   fprintf(pOutFile, "%.3f\n",
           0.0);
   printf("\n 1 %s\t%.3f  %.3f  %.3f  %.3f  %.3f  %.3f",

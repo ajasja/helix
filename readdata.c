@@ -65,10 +65,10 @@ int ReadData(struct sequence *Sequence, char* cmdseq, bool seq_flag, char* salt,
   }
 
   /* print out summary */
-  printf("\nThe sequence and initial parameters are:\n");
-  printf("\t  w'\t  w\t  vN\t  vC\t  N\t  C\n");
+  dprint("\nThe sequence and initial parameters are:\n");
+  dprint("\t  w'\t  w\t  vN\t  vC\t  N\t  C\n");
   for (nIndex = 0; nIndex < Sequence->nLength; ++nIndex)
-    printf("%2d %s\t%5.3f\t%5.3f\t%5.3f\t%5.3f\t%5.3f\t%5.3f\n", 
+    dprint("%2d %s\t%5.3f\t%5.3f\t%5.3f\t%5.3f\t%5.3f\t%5.3f\n", 
            nIndex + 1, 
            Seq[nIndex].szName, 
            Seq[nIndex].w1, 

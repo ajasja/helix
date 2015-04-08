@@ -85,8 +85,8 @@ int FindHbond (struct sequence *Sequence, bool Hbond_flag)
     }
     if (ON == flag)
     {
-      printf("The parameters after adjustments are:\n");
-      printf("\t   w'\t     w\t       vN\t vC\t   N\t     C\n");
+      dprint("The parameters after adjustments are:\n");
+      dprint("\t   w'\t     w\t       vN\t vC\t   N\t     C\n");
       for (nIndx = 1; nIndx <= nLen; ++nIndx)
       {
         if (g_w[nIndx] > 1.0)
@@ -94,7 +94,7 @@ int FindHbond (struct sequence *Sequence, bool Hbond_flag)
           if (g_w[nIndx] > 1.2) 
             g_w[nIndx] = 1.2;
           Seq[nIndx].w *= g_w[nIndx];
-          printf("%2d %s\t%f  %f  %f  %f  %f  %f\n",
+          dprint("%2d %s\t%f  %f  %f  %f  %f  %f\n",
                  nIndx + 1,
                  Seq[nIndx].szName,
                  Seq[nIndx].w1,
