@@ -5,9 +5,9 @@
  * Author: Hui Tong
  * Modified by Igor Drobnak
  * (C) 1995-1997 University of Washington
- * (C) 2015 National insitiute of Chemistry, Slovenia
+ * (C) 2015 National institute of Chemistry, Slovenia
  * Last Updated: 3/4/2015
- * Description: this program simluates 2-state
+ * Description: this program simulates 2-state
  * helix-coil transitions in peptides and proteins
  **************************************************/
 
@@ -88,8 +88,8 @@ void main(int argc,char *argv[])
       puts("                  Note: <x> must be a number between 0.0 and 13.0\n");
       puts("--salt=[H|h]      uses high salt concentration in calculations (default = low salt)\n");
       puts("--findAll         use all available features in the model calculations (default asks about each feature at runtime)\n");
-      puts("--min             produces a minmal output file only (single column containing % helicity)\n");
-      puts("--help, -h        print this help informantion\n");
+      puts("--min             produces a minimal output file only (single column containing % helicity)\n");
+      puts("--help, -h        print this help information\n");
       return;
     }
   }
@@ -123,7 +123,7 @@ void main(int argc,char *argv[])
 /* searching for end effects at C terminus */
   FindCend(&Sequence, end_flag);
 
-/* searching for lipophilic (hydrophobic) interacions */
+/* searching for lipophilic (hydrophobic) interactions */
   FindLipo(&Sequence, lipo_flag);
 
 /* searching for hydrogen-bonding effect*/
