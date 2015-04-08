@@ -25,6 +25,12 @@
 printf(" %s(%d) and %s(%d)\n",Seq[nFirst].szName,(nFirst)+1,\
 Seq[nLast].szName,(nLast)+1)
 
+#ifdef DEBUG
+    #define dprint printf
+#else
+    #define dprint
+#endif
+
 struct residue {
   char  szName[MAXSIZE];
   float w1; 
