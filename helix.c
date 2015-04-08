@@ -27,8 +27,10 @@ void main(int argc,char *argv[])
   bool YFW_flag, RH_flag, cap_flag, end_flag, lipo_flag, Hbond_flag, Coul_flag, all_flag=false;
   bool min_flag=false;
   char salt[MAXSIZE];  //string indicating salt concentration (H=hi / L=low)
-  strcpy(salt,"L");  //default salt concentration is low
+  strcpy(salt, "L");  //default salt concentration is low
   float pH=7.0;  //pH at which to calculate charges
+  char out[MAXSIZE];  //name of output file
+  strcpy(out, "helix.out");
 
   /* read command-line arguments */
   printf("No. of command line parameters: %d\n", argc-1);
@@ -49,7 +51,10 @@ void main(int argc,char *argv[])
     {
       char* temp=strpbrk(argv[i], "=")+1;
       if(sscanf(temp, "%f", &pH)!=1 || pH<0.0 || pH>13.0)
+      {
+        pH=7.0;
         printf("Invalid pH given: %s. Falling back to default (7.0).\n",temp);
+      }
       printf("pH: %f\n", pH);
     }
     
@@ -74,6 +79,13 @@ void main(int argc,char *argv[])
       min_flag=true;
     }
     
+    // read name of output file
+    else if (strstr(argv[i], "--out="))
+    {
+      strcpy(out,strpbrk(argv[i], "=")+1);
+      printf("Output to file: %s\n", out);
+    }
+    
     // print out help information
     else if (strcmp(argv[i], "-h") || strcmp(argv[i], "--help"))
     {
@@ -89,6 +101,7 @@ void main(int argc,char *argv[])
       puts("--salt=[H|h]      uses high salt concentration in calculations (default = low salt)\n");
       puts("--findAll         use all available features in the model calculations (default asks about each feature at runtime)\n");
       puts("--min             produces a minimal output file only (single column containing % helicity)\n");
+      puts("--out=<filename>  writes output to file <filename> (default = helix.out)\n");
       puts("--help, -h        print this help information\n");
       return;
     }
@@ -137,9 +150,9 @@ void main(int argc,char *argv[])
 
 /* print them out */
   if(min_flag)
-    PrintProbMin(&Sequence);
+    PrintProbMin(&Sequence, out);
   else
-    PrintProb(&Sequence);
+    PrintProb(&Sequence, out);
   
   puts("Done!");
 }

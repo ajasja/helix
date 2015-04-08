@@ -2,7 +2,7 @@
 #define PRINT(format, value) fprintf(pOutFile, format, value);\
                               printf(format, value)
 
-void PrintProbMin(struct sequence *Sequence)
+void PrintProbMin(struct sequence *Sequence, char* out)
 {
 /*******************************************************************
  * Description: this subroutine prints out the list of probabilities
@@ -15,7 +15,7 @@ void PrintProbMin(struct sequence *Sequence)
   struct residue *Seq=Sequence->residue;
   int nLength = Sequence->nLength;
 
-  if (!(pOutFile = fopen("helix.out", "w")))
+  if (!(pOutFile = fopen(out, "w")))
     return;
 
 /*  PRINT("%s\n", "****** Helix v.1.5 (C) 1995-96 Andersen Group ******");

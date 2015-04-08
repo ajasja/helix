@@ -70,7 +70,7 @@ int FindCoul  (struct sequence *Sequence, bool Coul_flag);
 int CalcProb (struct sequence *Sequence);
 
 void PrintParam (struct residue *Seq, int nFirst, int nLast, int *aFlag);
-void PrintProb (struct sequence *Sequence);
-void PrintProbMin (struct sequence *Sequence);
+void PrintProb (struct sequence *Sequence, char* out);
+void PrintProbMin (struct sequence *Sequence, char* out);
 
 #endif
