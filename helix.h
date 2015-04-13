@@ -5,7 +5,7 @@
 #include <stdbool.h>
 
 /* maximum string size */
-#define MAXSIZE 80
+#define MAXSIZE 100
 /* maximum number of residues */
 #define MAXLEN 60
 /* salt concentraion */
